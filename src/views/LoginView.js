@@ -22,7 +22,7 @@ const LoginView = (props) => {
     e.preventDefault();
     console.log(formData);
 
-    axios.post("http://localhost:5000/users/login", formData).then((res) => {
+    axios.post("http://localhost:5000/api/users/login", formData).then((res) => {
       if (!res.data.error) {
         localStorage.setItem("user", JSON.stringify(res.data));
         props.setUser(res.data);
@@ -31,7 +31,7 @@ const LoginView = (props) => {
   };
 
   return (
-    <Form className="w-50 mx-auto" onSubmit={handleSubmit}>
+    <Form className="w-60" onSubmit={handleSubmit}>
       {props.user && <Navigate to="/mern2/clients" />}
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Login</Form.Label>

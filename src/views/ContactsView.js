@@ -63,25 +63,20 @@ const ContactsView = (props) => {
                 <td>{contact.forma_kontaktu}</td>
                 <td>{contact.notatka}</td>
                 <td>{contact.opiekun}</td>
-               
+
                 <td>
-                 
-                    {contact.data_nastepnego_kontaktu > contact.data_kontaktu ?(
-                     <Moment
-                    parse="YYYY-MM-DD-T-hh:mm:ss.0100"
-                    format="YYYY-MM-DD"
-                  >{contact.data_nastepnego_kontaktu}                  
-                  
-                  </Moment>
-                    ) : ("-")}
+                  {contact.data_nastepnego_kontaktu > contact.data_kontaktu ? (
+                    <Moment
+                      parse="YYYY-MM-DD-T-hh:mm:ss.0100"
+                      format="YYYY-MM-DD"
+                    >
+                      {contact.data_nastepnego_kontaktu}
+                    </Moment>
+                  ) : (
+                    "-"
+                  )}
                 </td>
                 <td>
-                  <button
-                    name="submit"
-                    onClick={() => handleDelete(contact._id)}
-                  >
-                    usuń
-                  </button>
                   <button name="submit">modyfikuj</button>
                 </td>
               </tr>

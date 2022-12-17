@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+// import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const ClientAdd = (props) => {
   const [clientForm, setClientForm] = useState({
@@ -80,7 +82,7 @@ const ClientAdd = (props) => {
       setErrors((prevErrors) => {
         return {
           ...prevErrors,
-          nazwa_firmy: "Pole imię powinno zawierać minimum 3 znaki",
+          nazwa_firmy: "Pole nazwa firmy powinno zawierać minimum 3 znaki",
         };
       });
     } else if (!/[a-zA-Z]+$/.test(clientForm.nazwa_firmy.trim())) {
@@ -141,7 +143,7 @@ const ClientAdd = (props) => {
           opiekun: "",
         });
         console.log(reqData);
-        // props.setKursId(null);
+    
       })
       .catch((error) => {
         console.error(error);
@@ -151,7 +153,7 @@ const ClientAdd = (props) => {
   return (
     <div>
        
-      <form onSubmit={handleSubmitNewClient}>
+      <Form onSubmit={handleSubmitNewClient}>
         <h2>Dopisz nowego klienta</h2>
         <label>nazwa firmy</label>{" "}
         <input
@@ -159,7 +161,7 @@ const ClientAdd = (props) => {
           id="nazwa_firmy"
           type="text"
           name="nazwa_firmy"
-          placeholder="nazwa_firmy"
+          placeholder="Wpisz nazwę firmy"
           value={clientForm.nazwa_firmy}
         />
         <br></br>
@@ -169,7 +171,7 @@ const ClientAdd = (props) => {
           id="nip"
           type="text"
           name="nip"
-          placeholder="nazwisko"
+          placeholder="Wpisz NIP - 10 cyfr bez innych znaków"
           value={clientForm.nip}
         />
         <br />
@@ -179,8 +181,8 @@ const ClientAdd = (props) => {
           id="adres.kod_pocztowy"
           type="text"
           name="adres.kod_pocztowy"
-          placeholder="adres.kod_pocztowy"
-          value={clientForm.adreskod_pocztowy}
+          placeholder="wpisz kod pocztowy- 6 cyfr bez innych znaków"
+          value={clientForm.adres.kod_pocztowy}
         />
         <br></br>
         <label>adres.miasto</label>{" "}
@@ -189,8 +191,8 @@ const ClientAdd = (props) => {
           id="adres.miasto"
           type="text"
           name="adres.miasto"
-          placeholder="adres.miasto"
-          value={clientForm.adresmiasto}
+          placeholder="Wpisz miasto"
+          value={clientForm.adres.miasto}
         />
         <br></br>
         <label>adres.ulica</label>{" "}
@@ -199,8 +201,8 @@ const ClientAdd = (props) => {
           id="adres.ulica"
           type="text"
           name="adres.ulica"
-          placeholder="adres.ulica"
-          value={clientForm.adresulica}
+          placeholder="wpisz ulicę"
+          value={clientForm.adres.ulica}
         />
         <br></br>
         <label>adres.nr_domu</label>{" "}
@@ -209,8 +211,8 @@ const ClientAdd = (props) => {
           id="adres.nr_domu"
           type="text"
           name="adres.nr_domu"
-          placeholder="adres.nr_domu"
-          value={clientForm.adresnr_domu}
+          placeholder="wpisz numer domu"
+          value={clientForm.adres.nr_domu}
         />
         <br></br>
         <label>adres.nr_lokalu</label>{" "}
@@ -219,21 +221,21 @@ const ClientAdd = (props) => {
           id="adres.nr_lokalu"
           type="text"
           name="adres.nr_lokalu"
-          placeholder="adres.nr_lokalu"
-          value={clientForm.adresnr_lokalu}
+          placeholder="wpisz numer lokalu"
+          value={clientForm.adres.nr_lokalu}
         />
         <br></br>
-        <label>adres.adres_email</label>{" "}
+        <label>adres_email</label>{" "}
         <input
           onChange={handleInputChange}
           id="adres.adres_email"
           type="text"
           name="adres.adres_email"
           placeholder="adres.adres_email"
-          value={clientForm.adresadres_email}
+          value={clientForm.adres.adres_email}
         />
         <br></br>
-        <label>adres.nr_telefonu</label>{" "}
+        <label>numer telefonu</label>{" "}
         <input
           onChange={handleInputChange}
           id="adres.nr_telefonu"
@@ -255,7 +257,7 @@ const ClientAdd = (props) => {
         <br></br>
         <button formAction="submit" > dodaj </button>
         <br />
-      </form>
+      </Form>
       
 
       <p> {errors.nazwa_firmy} </p>

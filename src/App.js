@@ -5,6 +5,7 @@ import MainNav from "./components/MainNav";
 
 import axios from "axios";
 import { Container } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 
 
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <Container>
       
-      <MainNav user={user} setUser={setUser} />
+      <MainNav user={user?.user} setUser={setUser} />
 
       <AppRoutes user={user} setUser={setUser} />
 

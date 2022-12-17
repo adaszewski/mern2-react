@@ -1,20 +1,21 @@
 import React from "react";
 import axios from "axios";
-import "./ClientsView.css";
 import { useEffect, useState } from "react";
 import "moment-timezone";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const ClientsView = (props) => {
-  const [clients, setClients] = useState([]);
-  
+const ClientsCitiesView = (props) => {
+  const [clientsCity, setClientsCity] = useState([]);
   const navigate = useNavigate();
 
-  const getClients = (props) => {
+  let { miasto } = useParams();
+
+  const getClientsCity = (props) => {
     axios
-      .get("http://localhost:5000/api/client/all")
+      .get("http://localhost:5000/api/client/miasto/" + miasto)
       .then((req) => {
-        setClients(req.data);
+        setClientsCity(req.data);
+        console.log(req.data);
       })
       .catch((error) => {
         console.error(error);
@@ -22,15 +23,17 @@ const ClientsView = (props) => {
   };
 
   useEffect(() => {
-    getClients();
+    getClientsCity();
   }, []);
 
   const getNip = (nip) => {
     navigate("/client/nip/" + nip);
   };
 
+
   return (
     <div>
+      {miasto}
       <table>
         <thead>
           <tr>
@@ -44,7 +47,7 @@ const ClientsView = (props) => {
           </tr>
         </thead>
         <tbody>
-          {clients.map((client) => {
+          {clientsCity.map((client) => {
             return (
               <tr key={client._id}>
                 <td>{client.nazwa_firmy}</td>
@@ -53,7 +56,7 @@ const ClientsView = (props) => {
                 <td>{client.opiekun}</td>
 
                 <td>
-                  <button
+                <button
                     name="submit"
                     onClick={() => {
                       getNip(client.nip);
@@ -65,10 +68,11 @@ const ClientsView = (props) => {
               </tr>
             );
           })}
-        </tbody>
+        </tbody>{" "}
+        
       </table>
     </div>
   );
 };
 
-export default ClientsView;
+export default ClientsCitiesView;
