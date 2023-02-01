@@ -4,17 +4,17 @@ import axios from 'axios';
 import 'moment-timezone';
 import { useParams, useNavigate } from 'react-router-dom';
 
-function ClientsCitiesView(props) {
-  const [clientsCity, setClientsCity] = useState([]);
+function ClientsUserView(props) {
+  const [clientsUser, setClientsUser] = useState([]);
   const navigate = useNavigate();
 
-  const { miasto } = useParams();
+  const { opiekun } = useParams();
 
-  const getClientsCity = (props) => {
+  const getClientsUser = (props) => {
     axios
-      .get(`http://localhost:5000/api/client/miasto/${miasto}`)
+      .get(`http://localhost:5000/api/client/opiekun/${opiekun}`)
       .then((req) => {
-        setClientsCity(req.data);
+        setClientsUser(req.data);
         console.log(req.data);
       })
       .catch((error) => {
@@ -23,16 +23,16 @@ function ClientsCitiesView(props) {
   };
 
   useEffect(() => {
-    getClientsCity();
+    getClientsUser();
   }, []);
 
   const getNip = (nip) => {
-    navigate(`/client/nip/${nip}`);
+    navigate(`/client/opiekun/${opiekun}`);
   };
 
   return (
     <div>
-      {miasto}
+      {opiekun}
       <table>
         <thead>
           <tr>
@@ -48,7 +48,7 @@ function ClientsCitiesView(props) {
           </tr>
         </thead>
         <tbody>
-          {clientsCity.map((client) => (
+          {clientsUser.map((client) => (
             <tr key={client._id}>
               <td>{client.nazwa_firmy}</td>
               <td>{client.nip}</td>
@@ -75,4 +75,4 @@ function ClientsCitiesView(props) {
   );
 }
 
-export default ClientsCitiesView;
+export default ClientsUserView;

@@ -1,0 +1,77 @@
+/* .App {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+    height: 100vh;
+  }
+  
+  .title {
+    padding-top: 80px;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .form-wrapper {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);
+  }
+  
+  .input {
+    width: 350px;
+    height: 45px;
+    padding-left: 15px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+  }
+  
+  .input:focus {
+    outline: none;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 30%;
+    right: 20px;
+    font-size: 20px;
+    font-weight: 300;
+    cursor: pointer;
+  }
+  
+  .suggestion-wrapper {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    width: 337px;
+    text-align: start;
+  }
+  
+  .suggestions {
+    width: 100%;
+    padding: 8px 5px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .suggestions:hover {
+    background-color: #292929;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .select {
+    padding-top: 50px;
+    font-size: 18px;
+  }
+  
+  .selected {
+    font-family: cursive;
+    font-weight: 600;
+    padding-left: 10px;
+  }
+   */

@@ -1,19 +1,18 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from "react";
 import "./MainNav.css";
-
-import { Link} from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavLink from 'react-bootstrap/NavLink';
+import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavLink from "react-bootstrap/NavLink";
+import { NavDropdown } from "react-bootstrap";
 import Moment from "react-moment";
-import { MomentTimezone } from "moment";
 
-
-const MainNav = (props) => {
+function MainNav(props) {
   const dateToFormat = Date();
-  const locale='pl'
+
   const logout = (e) => {
     e.preventDefault();
     props.setUser(null);
@@ -22,14 +21,16 @@ const MainNav = (props) => {
 
   return (
     <Container className="nav-container">
-      
       {props.user && (
         <span>
-          Dziś jest <Moment local='pl-pl' format='dddd'>{dateToFormat}</Moment> , <Moment locale="de" format=" D MMMM YYYY">{dateToFormat}</Moment> Jesteś zalogowany jako:
+          Dziś jest
+          <Moment format="dddd">{dateToFormat}</Moment>,
+          <Moment format=" D MMMM YYYY">{dateToFormat}</Moment> Jesteś
+          zalogowany jako:
           <span>{props.user} </span>{" "}
         </span>
       )}
-      <Navbar as={Link} size='xxl' variant="primary" to="/">
+      <Navbar as={Link} size="xxl" variant="primary" to="/">
         Home
       </Navbar>
       <Nav className="me-auto">
@@ -41,18 +42,48 @@ const MainNav = (props) => {
         <br />
 
         {props.user && (
-          <Nav.Link as={Link} to="/clients">
-            Pokaż listę klientów
+          <Nav.Link as={Link} to="/houses">
+            Pokaż listę domów
           </Nav.Link>
         )}
         <br />
 
         {props.user && (
-          <Nav.Link as={Link} to="/clients/search">
-            Wyszukaj klientów
+          <NavDropdown title="Szukaj po" id="nav-dropdown">
+            <NavDropdown.Item as={Link} to="/clients/search/nip" eventKey="4.1">
+              NIP
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              as={Link}
+              to="/clients/search/miasto"
+              eventKey="4.2"
+            >
+              Miasto
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              as={Link}
+              to="/clients/search/opiekun"
+              eventKey="4.3"
+            >
+              Opiekun
+            </NavDropdown.Item>
+          </NavDropdown>
+        )}
+        <br />
+        {props.user && (
+          <Nav.Link as={Link} to="/add-patient">
+            dodaj pacjenta
           </Nav.Link>
         )}
         <br />
+        <br />
+        {props.user && (
+          <Nav.Link as={Link} to="/patients">
+            Pokaż listę pacjentów
+          </Nav.Link>
+        )}
+        <br />
+
         {props.user && (
           <Nav.Link as={Link} to="/contacts">
             Pokaż listę kontaktów
@@ -67,9 +98,7 @@ const MainNav = (props) => {
         )}
       </Nav>
     </Container>
-
-    // <Link as={Button} to="/client/nip/:nip" onClick={props.getClient}> </Link>
   );
-};
+}
 
 export default MainNav;

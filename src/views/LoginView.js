@@ -1,30 +1,28 @@
-import axios from "axios";
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Button, Form } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 
-const LoginView = (props) => {
+function LoginView(props) {
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const handleInputData = (e) => {
-    const target = e.target;
-    const name = target.name;
+    const { target } = e;
+    const { name } = target;
 
-    setFormData((data) => {
-      return { ...data, [name]: target.value };
-    });
+    setFormData((data) => ({ ...data, [name]: target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
 
-    axios.post("http://localhost:5000/api/users/login", formData).then((res) => {
+    axios.post('http://localhost:5000/api/users/login', formData).then((res) => {
       if (!res.data.error) {
-        localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem('user', JSON.stringify(res.data));
         props.setUser(res.data);
       }
     });
@@ -32,7 +30,7 @@ const LoginView = (props) => {
 
   return (
     <Form className="w-60" onSubmit={handleSubmit}>
-      {props.user && <Navigate to="/mern2/clients" />}
+      {props.user && <Navigate to="/termcare/users" />}
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Login</Form.Label>
         <Form.Control
@@ -57,6 +55,6 @@ const LoginView = (props) => {
       <Button type="submit">Zaloguj</Button>
     </Form>
   );
-};
+}
 
 export default LoginView;
