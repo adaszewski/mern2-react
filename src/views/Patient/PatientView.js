@@ -11,7 +11,6 @@ function PatientView(props) {
 
   const { id } = useParams();
 
-
   const getPatient = (props) => {
     axios
       .get(`http://localhost:5000/api/patient/${id}`)
