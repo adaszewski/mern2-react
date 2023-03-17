@@ -1,5 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React from "react";
 import "./MainNav.css";
 import { Link } from "react-router-dom";
@@ -9,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
 import { NavDropdown } from "react-bootstrap";
 import Moment from "react-moment";
+import 'moment/locale/pl'; 
 
 function MainNav(props) {
   const dateToFormat = Date();
@@ -18,6 +17,8 @@ function MainNav(props) {
     props.setUser(null);
     localStorage.setItem("user", null);
   };
+
+  
 
   return (
     <Container className="nav-container">
@@ -84,12 +85,7 @@ function MainNav(props) {
         )}
         <br />
 
-        {props.user && (
-          <Nav.Link as={Link} to="/contacts">
-            Pokaż listę kontaktów
-          </Nav.Link>
-        )}
-        <br />
+  
 
         {props.user && (
           <Nav.Link as={Link} to="/" onClick={logout}>

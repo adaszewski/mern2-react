@@ -17,7 +17,6 @@ function App(props) {
   return (
     <Container>
       <MainNav user={user?.user} setUser={setUser} />
-
       <AppRoutes user={user} setUser={setUser}/>
      
     </Container>

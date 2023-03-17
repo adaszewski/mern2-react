@@ -35,6 +35,8 @@ function AnkietaKatza(props) {
   console.log(resStatus);
 
   return (
+  <div> 
+    {props.katzexam?  (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>
         Pacjent o numerze PESEL:<b>{props.patientOne?.pesel}</b>
@@ -149,7 +151,8 @@ function AnkietaKatza(props) {
       {errors.katz6 && <span>To pole jest wymagane</span>}
       <input type="submit" />
       {resStatus}
-    </form>
+    </form>) :("")}
+    </div>
   );
 }
 

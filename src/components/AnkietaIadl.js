@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function AnkietaIadl(props) {
- 
-  const { id } = useParams();
- 
+  let { id } = useParams();
   const {
     register,
     handleSubmit,
@@ -15,7 +13,7 @@ function AnkietaIadl(props) {
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/api/iadl/add/" + id, data)
+      .post("http://localhost:5000/api/iadl/add/" + id, useForm)
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
@@ -36,6 +34,8 @@ function AnkietaIadl(props) {
   console.log(resStatus);
 
   return (
+    <div>
+    {props.iadllexam? (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>
         <strong> Ocena według skali IADL wg Lawtona</strong>
@@ -45,7 +45,6 @@ function AnkietaIadl(props) {
         Pacjent o numerze PESEL:<b>{props.patientOne?.pesel}</b>
       </label>
       <br></br>
-
       <label>
         <b>data badania:</b>
       </label>
@@ -73,11 +72,10 @@ function AnkietaIadl(props) {
       />
       <label> nie korzysta </label>
       <br />
-
+      <br />
       <label>
         <b>2. Zakupy codzienne</b>
       </label>
-      <br />
       <br />
       <input
         {...register("iadl2", { required: true })}
@@ -93,11 +91,10 @@ function AnkietaIadl(props) {
       />
       <label> nie, lub z pomocą </label>
       <br />
-
+      <br />
       <label>
         <b>3. Przygotowywanie posiłków</b>
       </label>
-      <br />
       <br />
       <input
         {...register("iadl3", { required: true })}
@@ -113,11 +110,10 @@ function AnkietaIadl(props) {
       />
       <label> nie, lub z pomocą </label>
       <br />
-
+      <br />
       <label>
         <b>4. Codzienne porządki</b>
       </label>
-      <br />
       <br />
       <input
         {...register("iadl4", { required: true })}
@@ -133,10 +129,10 @@ function AnkietaIadl(props) {
       />
       <label> nie, lub z pomocą </label>
       <br />
+      <br />
       <label>
         <b>5. Pranie</b>
       </label>
-      <br />
       <br />
       <input
         {...register("iadl5", { required: true })}
@@ -152,10 +148,10 @@ function AnkietaIadl(props) {
       />
       <label> nie, lub z pomocą </label>
       <br />
+      <br />
       <label>
         <b>6. Środki transportu</b>
       </label>
-      <br />
       <br />
       <input
         {...register("iadl6", { required: true })}
@@ -171,10 +167,10 @@ function AnkietaIadl(props) {
       />
       <label> wymaga pomocy</label>
       <br />
+      <br />
       <label>
         <b>7. Własne leki</b>
       </label>
-      <br />
       <br />
       <input
         {...register("iadl7", { required: true })}
@@ -190,11 +186,11 @@ function AnkietaIadl(props) {
       />
       <label> wymaga pomocy</label>
       <br />
+      <br />
       <label>
         <b>8. Rozporządzanie swoimi pieniędzmi</b>
       </label>
-      <br />
-      <br />
+      <br />{" "}
       <input
         {...register("iadl8", { required: true })}
         type="radio"
@@ -209,12 +205,13 @@ function AnkietaIadl(props) {
       />
       <label> Nie posługuje się</label>
       <br />
-
       <br />
       <hr />
       <input type="submit" />
       <h2>{resStatus}</h2>
-    </form>
+  
+    </form>) :("")}
+    </div>
   );
 }
 
